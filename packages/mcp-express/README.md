@@ -11,7 +11,7 @@ This package provides Express middleware that implements Model Context Protocol 
 applications. It integrates with Asgardeo for authentication and authorization services.
 
 This package is part of the
-[Asgardeo MCP Node.js SDKs monorepo](https://github.com/brionmario/asgardeo-mcp-node#readme). For overall project
+[Asgardeo MCP Node.js SDKs monorepo](https://github.com/asgardeo/asgardeo-mcp-node#readme). For overall project
 information, contribution guidelines, and details on other related packages, please refer to the main repository.
 
 ## Installation

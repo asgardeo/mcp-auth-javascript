@@ -77,7 +77,7 @@ git clone https://github.com/<github username>/asgardeo-mcp-node.git
 3. Set the original repo as the upstream remote.
 
 ```shell
-git remote add upstream https://github.com/brionmario/asgardeo-mcp-node.git
+git remote add upstream https://github.com/asgardeo/asgardeo-mcp-node.git
 ```
 
 ## Setting up the Development Environment
@@ -326,7 +326,7 @@ The content of the commit message body should contain:
    ```bash
    git push origin feat/your-feature-name
    ```
-4. Go to the original `brionmario/asgardeo-mcp-node` repository on GitHub and open a new Pull Request from your forked
+4. Go to the original `asgardeo/asgardeo-mcp-node` repository on GitHub and open a new Pull Request from your forked
    branch to the `main` branch of the upstream repository.
 5. Provide a clear title and a detailed description for your Pull Request:
    - Explain the "why" and "what" of your changes.

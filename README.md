@@ -7,12 +7,12 @@
   </h1>
 </p>
 <p align="center" style="font-size: 1.2rem;">
-  Node.js SDKs for implementing Model Context Protocol (MCP) authorization with <a href="https://wso2.com/asgardeo">Asgardeo</a>. This repository is maintained by <a href="https://github.com/brionmario">Brion Mario</a>.
+  Node.js SDKs for implementing Model Context Protocol (MCP) authorization with <a href="https://wso2.com/asgardeo">Asgardeo</a>
 </p>
 
 <div align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-blue.svg" alt="License"></a>
-  <a href="https://github.com/brionmario/asgardeo-mcp-node/actions/workflows/release.yml"><img src="https://github.com/brionmario/asgardeo-mcp-node/actions/workflows/release.yml/badge.svg" alt="🚀 Release"></a>
+  <a href="https://github.com/asgardeo/asgardeo-mcp-node/actions/workflows/release.yml"><img src="https://github.com/asgardeo/asgardeo-mcp-node/actions/workflows/release.yml/badge.svg" alt="🚀 Release"></a>
   <br>
   <br>
 </div>
@@ -37,8 +37,8 @@ mcp-express.
 
 | Package                                                                                                                                                                                 | Description                                                                        |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [![@asgardeo/mcp-express](https://img.shields.io/npm/v/@asgardeo/mcp-express?color=%234A90E2&label=%40brionmario-experimental%2Fmcp-express&logo=express)](./packages/mcp-express/)     | Express middleware for enforcing MCP authorization using Asgardeo.                 |
-| [![@asgardeo/mcp-node](https://img.shields.io/npm/v/@asgardeo/mcp-node?color=%23339933&label=%40brionmario-experimental%2Fmcp-node&logo=nodedotjs)](./packages/mcp-node/) (Placeholder) | Core Node.js utilities for Model Context Protocol (MCP) integration with Asgardeo. |
+| [![@asgardeo/mcp-express](https://img.shields.io/npm/v/@asgardeo/mcp-express?color=%234A90E2&label=%40asgardeo%2Fmcp-express&logo=express)](./packages/mcp-express/)     | Express middleware for enforcing MCP authorization using Asgardeo.                 |
+| [![@asgardeo/mcp-node](https://img.shields.io/npm/v/@asgardeo/mcp-node?color=%23339933&label=%40asgardeo%2Fmcp-node&logo=nodedotjs)](./packages/mcp-node/) (Placeholder) | Core Node.js utilities for Model Context Protocol (MCP) integration with Asgardeo. |
 
 ## Overview
 
@@ -62,7 +62,7 @@ submitting pull requests to us. We highly value your contributions and support!
 ### Reporting issues
 
 We encourage you to report issues, improvements, and feature requests by creating
-[Github Issues](https://github.com/brionmario/asgardeo-mcp-node/issues).
+[Github Issues](https://github.com/asgardeo/asgardeo-mcp-node/issues).
 
 **Important**: Please be advised that security issues **MUST** be reported to
 <a href="mailto:security@wso2.com">security@wso2.com</a>, not as GitHub issues, in order to reach the proper audience.
