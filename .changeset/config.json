@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.2.0/schema.json",
+  "access": "restricted",
+  "baseBranch": "main",
+  "changelog": ["@changesets/changelog-github", { "repo": "brionmario/mcp-node" }],
+  "commit": false,
+  "fixed": [],
+  "ignore": [],
+  "linked": [],
+  "privatePackages": {
+    "version": true,
+    "tag": true
+  },
+  "root": {
+    "packageDir": "."
+  },
+  "tagFormat": "@<scope>/<package>@${version}",
+  "updateInternalDependencies": "patch"
+}
