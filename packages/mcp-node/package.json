@@ -1,0 +1,67 @@
+{
+  "name": "@asgardeo/mcp-node",
+  "version": "0.0.0",
+  "description": "Node.js core for enforcing Model Context Protocol (MCP) authorization using Asgardeo.",
+  "keywords": [
+    "asgardeo",
+    "agents",
+    "mcp",
+    "mcp-node",
+    "mcp-auth",
+    "authorization",
+    "core"
+  ],
+  "homepage": "https://github.com/asgardeo/mcp-node/tree/main/packages/mcp-node#readme",
+  "bugs": {
+    "url": "https://github.com/asgardeo/mcp-node/issues"
+  },
+  "author": "WSO2",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/cjs/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asgardeo/mcp-node",
+    "directory": "packages/mcp-node"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "node ./scripts/build.js",
+    "build:types": "tsc --emitDeclarationOnly --declaration",
+    "build:esm": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=esm --sourcemap --minify --external:jose --external:node-fetch",
+    "build:cjs": "esbuild src/index.ts --bundle --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap --minify --external:jose --external:node-fetch",
+    "fix:lint": "eslint --fix --ext .ts,.js src",
+    "lint": "eslint --ext .ts,.js src"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@wso2/eslint-plugin": "https://gitpkg.now.sh/brionmario/wso2-ui-configs/packages/eslint-plugin?4ee6f6be232d7631999d709a86b91612f1d34ce7",
+    "@wso2/prettier-config": "https://gitpkg.now.sh/brionmario/wso2-ui-configs/packages/prettier-config?4ee6f6be232d7631999d709a86b91612f1d34ce7",
+    "esbuild": "^0.25.4",
+    "eslint": "8.57.0",
+    "prettier": "^2.6.2",
+    "typescript": "~5.7.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "jose": "^6.0.10",
+    "node-fetch": "^3.3.2",
+    "tslib": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
