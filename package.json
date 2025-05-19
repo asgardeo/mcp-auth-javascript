@@ -23,7 +23,8 @@
     "fix:lint": "nx run-many --target=fix:lint --all --parallel",
     "lint": "nx run-many --target=lint --all --parallel",
     "publish:packages": "changeset publish",
-    "version:packages": "changeset version && pnpm install --lockfile-only"
+    "version:packages": "changeset version && pnpm install --lockfile-only",
+    "test": "echo \"No tests configured\""
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
