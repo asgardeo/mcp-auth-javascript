@@ -17,7 +17,7 @@
  */
 
 import {randomUUID} from 'node:crypto';
-import {McpAuthServer, protectedRoute} from '@asgardeo/mcp-express';
+import {AsgardeoMcpAuth, protectedRoute} from '@asgardeo/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
@@ -30,7 +30,7 @@ config();
 const app: Express = express();
 app.use(express.json());
 app.use(
-  McpAuthServer({
+  AsgardeoMcpAuth({
     baseUrl: process.env.BASE_URL as string,
   }),
 );

@@ -5,7 +5,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "asgardeo/mcp-node"
+      "repo": "asgardeo/asgardeo-mcp-node"
     }
   ],
   "commit": false,
