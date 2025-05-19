@@ -1,4 +1,4 @@
-# @asgardeo/express-mcp-server
+# @asgardeo/express-mcp-vet-ai-assist-app
 
 ## 0.0.1
 
