@@ -1,6 +1,6 @@
 {
   "name": "@asgardeo/mcp-express",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Express middleware for enforcing Model Context Protocol (MCP) authorization using Asgardeo.",
   "keywords": [
     "asgardeo",

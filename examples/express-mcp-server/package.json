@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@asgardeo/express-mcp-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Example Express server demonstrating MCP authorization using Asgardeo",
   "keywords": [
     "asgardeo",
