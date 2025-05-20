@@ -36,13 +36,13 @@ pnpm add @asgardeo/mcp-express
 
 ```typescript
 import express from 'express';
-import {AsgardeoMcpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
 
 const app = express();
 
 // Initialize MCP authentication server with baseUrl
 app.use(
-  AsgardeoMcpAuth({
+  McpAuth({
     baseUrl: process.env.BASE_URL as string,
   }),
 );
@@ -60,14 +60,14 @@ app.use('/api/protected', protectedRoute, (req, res) => {
 
 ### API Reference
 
-#### AsgardeoMcpAuth(options)
+#### McpAuth(options)
 
 Initializes the MCP authentication server middleware with the given configuration.
 
 ```typescript
-import {AsgardeoMcpAuth} from '@asgardeo/mcp-express';
+import {McpAuth} from '@asgardeo/mcp-express';
 
-app.use(AsgardeoMcpAuth({baseUrl: 'https://auth.example.com'}));
+app.use(McpAuth({baseUrl: 'https://auth.example.com'}));
 ```
 
 #### protectedRoute
@@ -97,7 +97,7 @@ Here's a complete example of setting up an Express server with MCP authenticatio
 
 ```typescript
 import express from 'express';
-import {AsgardeoMcpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -105,7 +105,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 // Initialize MCP authentication
-app.use(AsgardeoMcpAuth());
+app.use(McpAuth());
 
 // Public routes
 app.use('/api', publicRoutes);
