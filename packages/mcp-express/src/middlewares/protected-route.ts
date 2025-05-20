@@ -20,11 +20,7 @@ import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@asgardeo/m
 import {NextFunction, Request, Response} from 'express';
 
 export default function protectedRoute(options: McpAuthOptions) {
-  return async function protectedMiddleware(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-  ): Promise<Response<any, Record<string, any>> | undefined> {
+  return async function protectedMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
     const authHeader: string | undefined = req.headers.authorization;
 
     if (!authHeader) {
@@ -32,18 +28,20 @@ export default function protectedRoute(options: McpAuthOptions) {
         'WWW-Authenticate',
         `Bearer resource_metadata="${req.protocol}://${req.get('host')}${PROTECTED_RESOURCE_URL}"`,
       );
-      return res.status(401).json({
+      res.status(401).json({
         error: 'unauthorized',
         error_description: 'Missing authorization token',
       });
+      return;
     }
 
     const parts: string[] = authHeader.split(' ');
     if (parts.length !== 2 || parts[0] !== 'Bearer') {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'invalid_token',
         error_description: 'Authorization header must be in format: Bearer [token]',
       });
+      return;
     }
 
     const token: string = parts[1];
@@ -69,9 +67,8 @@ export default function protectedRoute(options: McpAuthOptions) {
     try {
       await validateToken(token, TOKEN_VALIDATION_CONFIG.jwksUri, TOKEN_VALIDATION_CONFIG.options);
       next();
-      return undefined;
     } catch (error: any) {
-      return res.status(401).json({
+      res.status(401).json({
         error: 'invalid_token',
         error_description: error.message || 'Invalid or expired token',
       });
