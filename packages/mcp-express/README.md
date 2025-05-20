@@ -10,9 +10,9 @@ Express middleware for enforcing Model Context Protocol (MCP) authorization usin
 This package provides Express middleware that implements Model Context Protocol (MCP) based authorization for Express.js
 applications. It integrates with Asgardeo for authentication and authorization services.
 
-This package is part of the
-[Asgardeo MCP Node.js SDKs monorepo](https://github.com/asgardeo/asgardeo-mcp-node#readme). For overall project
-information, contribution guidelines, and details on other related packages, please refer to the main repository.
+This package is part of the [Asgardeo MCP Node.js SDKs monorepo](https://github.com/asgardeo/asgardeo-mcp-node#readme).
+For overall project information, contribution guidelines, and details on other related packages, please refer to the
+main repository.
 
 ## Installation
 
@@ -32,7 +32,7 @@ pnpm add @asgardeo/mcp-express
 - Built-in CORS support
 - Seamless integration with Asgardeo
 
-## Usage
+### Basic Setup
 
 ```typescript
 import express from 'express';
@@ -40,22 +40,23 @@ import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
 
 const app = express();
 
-// Initialize MCP authentication server with baseUrl
+// Initialize MCP authentication middleware with baseUrl
 app.use(
   McpAuth({
     baseUrl: process.env.BASE_URL as string,
   }),
 );
 
-// Public routes
-app.get('/api/public', (req, res) => {
-  res.json({message: 'This is a public endpoint'});
-});
-
-// Protected routes
-app.use('/api/protected', protectedRoute, (req, res) => {
-  res.json({message: 'This is a protected endpoint'});
-});
+// Protect your MCP endpoint
+app.post(
+  '/mcp',
+  protectedRoute({
+    baseUrl: process.env.BASE_URL as string,
+  }),
+  async (req, res) => {
+    // Your MCP handling logic here
+  },
+);
 ```
 
 ### API Reference
@@ -96,31 +97,119 @@ interface McpAuthOptions {
 Here's a complete example of setting up an Express server with MCP authentication:
 
 ```typescript
-import express from 'express';
+import {randomUUID} from 'node:crypto';
 import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
+import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
+import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
+import {config} from 'dotenv';
+import express, {Express, Request, Response} from 'express';
+import {z} from 'zod';
 
-const app = express();
-const port = process.env.PORT || 3000;
+config();
 
+const app: Express = express();
 app.use(express.json());
+app.use(
+  McpAuth({
+    baseUrl: process.env.BASE_URL as string,
+  }),
+);
 
-// Initialize MCP authentication
-app.use(McpAuth());
+// Session management
+interface TransportMap {
+  [sessionId: string]: {
+    lastAccess: number;
+    transport: StreamableHTTPServerTransport;
+  };
+}
 
-// Public routes
-app.use('/api', publicRoutes);
+const transports: TransportMap = {};
+const SESSION_TIMEOUT_MS: number = 30 * 60 * 1000;
 
-// Protected routes with MCP authentication
-app.use('/api/protected', protectedRoute, protectedRoutes);
+const isSessionExpired = (lastAccessTime: number): boolean => Date.now() - lastAccessTime > SESSION_TIMEOUT_MS;
 
-// Error handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({error: 'Something broke!'});
-});
+// MCP endpoint with authentication
+app.post(
+  '/mcp',
+  protectedRoute({
+    baseUrl: process.env.BASE_URL as string,
+  }),
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const sessionId: string | undefined = req.headers['mcp-session-id'] as string | undefined;
+      let transport: StreamableHTTPServerTransport;
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+      // Handle existing session or create new one
+      if (sessionId && transports[sessionId]) {
+        // Session management code...
+        transport = transports[sessionId].transport;
+        transports[sessionId].lastAccess = Date.now();
+      } else if (!sessionId && isInitializeRequest(req.body)) {
+        // Extract bearer token if present
+        let bearerToken: string | undefined;
+        const authHeader: string | undefined = req.headers.authorization as string | undefined;
+        if (authHeader && authHeader.toLowerCase().startsWith('bearer ')) {
+          bearerToken = authHeader.substring(7);
+          console.log(`Bearer token captured for new session.`);
+        }
+
+        // Create MCP server and configure tools
+        transport = new StreamableHTTPServerTransport({
+          // Transport configuration...
+        });
+
+        const server: McpServer = new McpServer({
+          name: 'example-server',
+          version: '1.0.0',
+        });
+
+        // Define MCP tools
+        server.tool(
+          'get_pet_vaccination_info',
+          'Retrieves the vaccination history for a specific pet.',
+          {
+            petId: z.string().describe('The unique identifier for the pet.'),
+          },
+          async ({petId}) => {
+            // Tool implementation using bearer token
+            return {
+              content: [
+                {
+                  text: `Retrieved vaccination info for pet ID: ${petId}. Token was ${
+                    bearerToken ? 'present' : 'absent'
+                  }.`,
+                  type: 'text',
+                },
+              ],
+            };
+          },
+        );
+
+        await server.connect(transport);
+      } else {
+        // Handle invalid requests
+        res.status(400).json({
+          error: {
+            code: -32000,
+            message: 'Bad Request',
+          },
+          id: req.body?.id || null,
+          jsonrpc: '2.0',
+        });
+        return;
+      }
+
+      await transport.handleRequest(req, res, req.body);
+    } catch (error) {
+      // Error handling
+    }
+  },
+);
+
+const PORT: string | number = process.env.PORT || 3000;
+app.listen(PORT, (): void => {
+  console.log(`MCP server running on port ${PORT}`);
 });
 ```
 
