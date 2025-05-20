@@ -17,7 +17,7 @@
  */
 
 import {randomUUID} from 'node:crypto';
-import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@asgardeo/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
@@ -28,12 +28,13 @@ import {z} from 'zod';
 config();
 
 const app: Express = express();
+
+const mcpAuthServer = new McpAuthServer({
+  baseUrl: process.env.BASE_URL as string,
+});
+
 app.use(express.json());
-app.use(
-  McpAuth({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-);
+app.use(mcpAuthServer.router());
 
 interface TransportMap {
   [sessionId: string]: {
@@ -49,10 +50,7 @@ const isSessionExpired = (lastAccessTime: number): boolean => Date.now() - lastA
 
 app.post(
   '/mcp',
-  protectedRoute({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-  async (req: Request, res: Response): Promise<void> => {
+  mcpAuthServer.protect(async (req: Request, res: Response): Promise<void> => {
     try {
       const sessionId: string | undefined = req.headers['mcp-session-id'] as string | undefined;
       let transport: StreamableHTTPServerTransport;
@@ -212,7 +210,7 @@ app.post(
         jsonrpc: '2.0',
       });
     }
-  },
+  }),
 );
 
 const handleSessionRequest = async (expressReq: Request, expressRes: Response): Promise<void> => {
