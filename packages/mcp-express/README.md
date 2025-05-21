@@ -32,61 +32,72 @@ pnpm add @asgardeo/mcp-express
 - Built-in CORS support
 - Seamless integration with Asgardeo
 
+## Usage
+
 ### Basic Setup
 
 ```typescript
 import express from 'express';
-import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@asgardeo/mcp-express';
 
 const app = express();
 
-// Initialize MCP authentication middleware with baseUrl
-app.use(
-  McpAuth({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-);
+// Initialize McpAuthServer with baseUrl
+const mcpAuthServer = new McpAuthServer({
+  baseUrl: process.env.BASE_URL as string,
+});
+
+app.use(express.json());
+app.use(mcpAuthServer.router());
 
 // Protect your MCP endpoint
 app.post(
   '/mcp',
-  protectedRoute({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-  async (req, res) => {
+  mcpAuthServer.protect(async (req, res) => {
     // Your MCP handling logic here
-  },
+  }),
 );
 ```
 
 ### API Reference
 
-#### McpAuth(options)
+#### McpAuthServer(options)
 
-Initializes the MCP authentication server middleware with the given configuration.
+Creates a new instance of the MCP authentication server with the given configuration.
 
 ```typescript
-import {McpAuth} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@asgardeo/mcp-express';
 
-app.use(McpAuth({baseUrl: 'https://auth.example.com'}));
+const mcpAuthServer = new McpAuthServer({baseUrl: 'https://auth.example.com'});
 ```
 
-#### protectedRoute
+#### mcpAuthServer.router()
 
-Middleware to protect routes that require authentication.
+Returns an Express router that sets up the necessary endpoints for MCP authentication.
 
 ```typescript
-import {protectedRoute} from '@asgardeo/mcp-express';
+app.use(mcpAuthServer.router());
+```
 
-app.use('/api/protected', protectedRoute, protectedRoutes);
+#### mcpAuthServer.protect(handler)
+
+Returns middleware that protects routes requiring authentication, passing control to the provided handler function when authentication succeeds.
+
+```typescript
+app.post(
+  '/api/protected',
+  mcpAuthServer.protect(async (req, res) => {
+    // Your protected route logic here
+  })
+);
 ```
 
 ### Configuration
 
-The middleware can be configured with the following option:
+The server can be configured with the following option:
 
 ```typescript
-interface McpAuthOptions {
+interface McpAuthServerOptions {
   /** Base URL of the authorization server */
   baseUrl: string;
 }
@@ -98,7 +109,7 @@ Here's a complete example of setting up an Express server with MCP authenticatio
 
 ```typescript
 import {randomUUID} from 'node:crypto';
-import {McpAuth, protectedRoute} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@asgardeo/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
@@ -109,12 +120,14 @@ import {z} from 'zod';
 config();
 
 const app: Express = express();
+
+// Initialize McpAuthServer
+const mcpAuthServer = new McpAuthServer({
+  baseUrl: process.env.BASE_URL as string,
+});
+
 app.use(express.json());
-app.use(
-  McpAuth({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-);
+app.use(mcpAuthServer.router());
 
 // Session management
 interface TransportMap {
@@ -132,10 +145,7 @@ const isSessionExpired = (lastAccessTime: number): boolean => Date.now() - lastA
 // MCP endpoint with authentication
 app.post(
   '/mcp',
-  protectedRoute({
-    baseUrl: process.env.BASE_URL as string,
-  }),
-  async (req: Request, res: Response): Promise<void> => {
+  mcpAuthServer.protect(async (req: Request, res: Response): Promise<void> => {
     try {
       const sessionId: string | undefined = req.headers['mcp-session-id'] as string | undefined;
       let transport: StreamableHTTPServerTransport;
@@ -204,7 +214,7 @@ app.post(
     } catch (error) {
       // Error handling
     }
-  },
+  }),
 );
 
 const PORT: string | number = process.env.PORT || 3000;
