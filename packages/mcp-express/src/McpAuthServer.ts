@@ -18,7 +18,7 @@
 
 import {McpAuthOptions} from '@asgardeo/mcp-node';
 import {Router, RequestHandler} from 'express';
-import bearerAuthMiddleware from './middlewares/protected-route';
+import bearerAuthMiddleware from './middlewares/bearerAuthMiddleware';
 import AuthRouter from './routes/auth';
 
 export class McpAuthServer {
