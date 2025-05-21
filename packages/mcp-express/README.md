@@ -51,12 +51,9 @@ app.use(express.json());
 app.use(mcpAuthServer.router());
 
 // Protect your MCP endpoint
-app.post(
-  '/mcp',
-  mcpAuthServer.protect(async (req, res) => {
-    // Your MCP handling logic here
-  }),
-);
+app.post('/mcp', mcpAuthServer.protect(), async (req, res) => {
+  // Your MCP handling logic here
+});
 ```
 
 ### API Reference
@@ -79,17 +76,15 @@ Returns an Express router that sets up the necessary endpoints for MCP authentic
 app.use(mcpAuthServer.router());
 ```
 
-#### mcpAuthServer.protect(handler)
+#### mcpAuthServer.protect()
 
-Returns middleware that protects routes requiring authentication, passing control to the provided handler function when authentication succeeds.
+Returns middleware that protects routes requiring authentication. This middleware should be applied before your route
+handler.
 
 ```typescript
-app.post(
-  '/api/protected',
-  mcpAuthServer.protect(async (req, res) => {
-    // Your protected route logic here
-  })
-);
+app.post('/api/protected', mcpAuthServer.protect(), async (req, res) => {
+  // Your protected route logic here
+});
 ```
 
 ### Configuration
@@ -145,7 +140,8 @@ const isSessionExpired = (lastAccessTime: number): boolean => Date.now() - lastA
 // MCP endpoint with authentication
 app.post(
   '/mcp',
-  mcpAuthServer.protect(async (req: Request, res: Response): Promise<void> => {
+  mcpAuthServer.protect(),
+  async (req: Request, res: Response): Promise<void> => {
     try {
       const sessionId: string | undefined = req.headers['mcp-session-id'] as string | undefined;
       let transport: StreamableHTTPServerTransport;

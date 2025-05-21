@@ -19,7 +19,7 @@
 import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@asgardeo/mcp-node';
 import {NextFunction, Request, Response} from 'express';
 
-export default function protectedRoute(options: McpAuthOptions) {
+export default function bearerAuthMiddleware(options: McpAuthOptions) {
   return async function protectedMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
     const authHeader: string | undefined = req.headers.authorization;
 

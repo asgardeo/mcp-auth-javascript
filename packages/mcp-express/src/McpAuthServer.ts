@@ -17,8 +17,8 @@
  */
 
 import {McpAuthOptions} from '@asgardeo/mcp-node';
-import express, {Router, RequestHandler} from 'express';
-import protectedRoute from './middlewares/protected-route';
+import {Router, RequestHandler} from 'express';
+import bearerAuthMiddleware from './middlewares/protected-route';
 import AuthRouter from './routes/auth';
 
 export class McpAuthServer {
@@ -38,9 +38,7 @@ export class McpAuthServer {
     return this.routerInstance;
   }
 
-  public protect(handler: RequestHandler): Router {
-    const protectedRouter: Router = express.Router();
-    protectedRouter.use(protectedRoute(this.options), handler);
-    return protectedRouter;
+  public protect(): RequestHandler {
+    return bearerAuthMiddleware(this.options);
   }
 }
