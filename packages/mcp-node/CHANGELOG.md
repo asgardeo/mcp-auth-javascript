@@ -1,5 +1,13 @@
 # @asgardeo/mcp-node
 
+## 0.1.0
+
+### Minor Changes
+
+- [#4](https://github.com/asgardeo/asgardeo-mcp-node/pull/4)
+  [`832b16f`](https://github.com/asgardeo/asgardeo-mcp-node/commit/832b16f47d16a7ac137dda9b396e8817725a4d7e) Thanks
+  [@3nethz](https://github.com/3nethz)! - First stable release 🎉
+
 ## 0.0.1
 
 ### Patch Changes
