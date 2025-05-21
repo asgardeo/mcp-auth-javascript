@@ -16,5 +16,4 @@
  * under the License.
  */
 
-export {default as AsgardeoMcpAuth} from './routes/auth';
-export {default as protectedRoute} from './middlewares/protected-route';
+export {McpAuthServer} from './McpAuthServer';
