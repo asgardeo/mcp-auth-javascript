@@ -1,5 +1,13 @@
 # @asgardeo/express-mcp-vet-ai-assist-app
 
+## 0.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`4e43145`](https://github.com/asgardeo/asgardeo-mcp-node/commit/4e43145d23e72592367052c7dd8d0e2118fecee4)]:
+  - @asgardeo/mcp-express@0.1.0
+
 ## 0.0.1
 
 ### Patch Changes
