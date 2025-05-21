@@ -2,4 +2,4 @@
 '@asgardeo/mcp-node': minor
 ---
 
-Initial release
+First stable release 🎉
