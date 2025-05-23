@@ -12,7 +12,7 @@
 
 <div align="center">
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-blue.svg" alt="License"></a>
-  <a href="https://github.com/asgardeo/asgardeo-mcp-javascript/actions/workflows/release.yml"><img src="https://github.com/asgardeo/asgardeo-mcp-javascript/actions/workflows/release.yml/badge.svg" alt="🚀 Release"></a>
+  <a href="https://github.com/asgardeo/mcp-auth-javascript/actions/workflows/release.yml"><img src="https://github.com/asgardeo/mcp-auth-javascript/actions/workflows/release.yml/badge.svg" alt="🚀 Release"></a>
   <br>
   <br>
 </div>
