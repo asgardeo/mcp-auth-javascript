@@ -31,6 +31,7 @@ const app: Express = express();
 
 const mcpAuthServer: McpAuthServer = new McpAuthServer({
   baseUrl: process.env.BASE_URL as string,
+  issuer: process.env.ISSUER as string,
 });
 
 app.use(express.json());

@@ -60,7 +60,7 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
       options: {
         audience: options?.audience,
         clockTolerance: 60,
-        issuer: `${issuerBase}/oauth2/token`,
+        issuer: `${options.issuer}`,
       },
     };
 

@@ -19,4 +19,5 @@
 export interface McpAuthOptions {
   audience?: string;
   baseUrl: string;
+  issuer: string;
 }
