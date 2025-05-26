@@ -1,7 +1,7 @@
-# Contributing to Asgardeo MCP Node.js SDKs
+# Contributing to Asgardeo MCP Auth JavaScript SDKs
 
 This guide walks you through setting up the development environment and other important information for contributing to
-Asgardeo MCP Node.js SDKs.
+Asgardeo MCP JavaScript SDKs.
 
 We welcome contributions of all kinds, from bug fixes and documentation improvements to new features.
 
@@ -37,7 +37,7 @@ We welcome contributions of all kinds, from bug fixes and documentation improvem
 To build and write code, make sure you have the following set of tools on your local environment:
 
 - [Git](https://git-scm.com/downloads) - Open source distributed version control system.
-- [Node.js](https://nodejs.org/en/download/) - JavaScript runtime. (`v16.x or higher`)
+- [Node.js](https://nodejs.org/en/download/) - JavaScript runtime. (`v20.x or higher`)
 - [pnpm](https://pnpm.io/) - Alternate npm client for faster package installs. (`v8.x or higher`)
 
 ## Development Tools
@@ -71,13 +71,13 @@ Sorts JSON objects in alphabetical order.
 Replace `<github username>` with your own username.
 
 ```shell
-git clone https://github.com/<github username>/asgardeo-mcp-node.git
+git clone https://github.com/<github username>/mcp-auth-javascript.git
 ```
 
 3. Set the original repo as the upstream remote.
 
 ```shell
-git remote add upstream https://github.com/asgardeo/asgardeo-mcp-node.git
+git remote add upstream https://github.com/asgardeo/mcp-auth-javascript.git
 ```
 
 ## Setting up the Development Environment
