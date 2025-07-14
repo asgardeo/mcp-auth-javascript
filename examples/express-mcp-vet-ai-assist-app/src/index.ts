@@ -17,10 +17,10 @@
  */
 
 import {randomUUID} from 'node:crypto';
-import {McpAuthServer} from '@pavindulakshan/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
+import {McpAuthServer} from '@pavindulakshan/mcp-express';
 import cors from 'cors';
 import {config} from 'dotenv';
 import express, {Express, Request, Response} from 'express';
