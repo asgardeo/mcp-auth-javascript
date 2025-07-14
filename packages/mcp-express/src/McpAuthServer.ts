@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import {McpAuthOptions} from '@asgardeo/mcp-node';
+import {McpAuthOptions} from '@pavindulakshan/mcp-node';
 import {Router, RequestHandler} from 'express';
 import bearerAuthMiddleware from './middlewares/bearerAuthMiddleware';
 import AuthRouter from './routes/auth';

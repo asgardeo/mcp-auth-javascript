@@ -1,5 +1,5 @@
 {
-  "name": "@asgardeo/mcp-express",
+  "name": "@pavindulakshan/mcp-express",
   "version": "0.1.0",
   "description": "Express middleware for enforcing Model Context Protocol (MCP) authorization using Asgardeo.",
   "keywords": [
@@ -38,8 +38,8 @@
     "clean": "rm -rf dist",
     "build": "node ./scripts/build.js",
     "build:types": "tsc --emitDeclarationOnly --declaration",
-    "build:esm": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=esm --sourcemap --minify --external:express --external:cors --external:@asgardeo/mcp-node",
-    "build:cjs": "esbuild src/index.ts --bundle --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap --minify --external:express --external:cors --external:@asgardeo/mcp-node",
+    "build:esm": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --format=esm --sourcemap --minify --external:express --external:cors --external:@pavindulakshan/mcp-node",
+    "build:cjs": "esbuild src/index.ts --bundle --platform=node --outfile=dist/cjs/index.js --format=cjs --sourcemap --minify --external:express --external:cors --external:@pavindulakshan/mcp-node",
     "fix:lint": "eslint --fix --ext .ts,.js src",
     "lint": "eslint --ext .ts,.js src"
   },
@@ -61,7 +61,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@asgardeo/mcp-node": "workspace:^",
+    "@pavindulakshan/mcp-node": "workspace:^",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "tslib": "^2.8.1"

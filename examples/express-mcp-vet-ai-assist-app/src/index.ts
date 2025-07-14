@@ -17,7 +17,7 @@
  */
 
 import {randomUUID} from 'node:crypto';
-import {McpAuthServer} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@pavindulakshan/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';

@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@asgardeo/mcp-node';
+import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@pavindulakshan/mcp-node';
 import {NextFunction, Request, Response} from 'express';
 
 export default function bearerAuthMiddleware(options: McpAuthOptions) {

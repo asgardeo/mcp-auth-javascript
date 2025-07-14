@@ -1,6 +1,6 @@
 import express from 'express';
 import {config} from 'dotenv';
-import {McpAuthServer} from '@asgardeo/mcp-express';
+import {McpAuthServer} from '@pavindulakshan/mcp-express';
 import {protectedRoutes} from './routes/protected';
 import {publicRoutes} from './routes/public';
 
