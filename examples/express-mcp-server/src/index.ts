@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 const mcpAuthServer = new McpAuthServer({
   baseUrl: process.env.BASE_URL as string,
   issuer: process.env.ISSUER as string,
+  resource: process.env.RESOURCE as string,
 });
 
 app.use(express.json());

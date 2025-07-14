@@ -21,6 +21,7 @@ import {McpAuthServer} from '@asgardeo/mcp-express';
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp';
 import {StreamableHTTPServerTransport} from '@modelcontextprotocol/sdk/server/streamableHttp';
 import {isInitializeRequest} from '@modelcontextprotocol/sdk/types';
+import cors from 'cors';
 import {config} from 'dotenv';
 import express, {Express, Request, Response} from 'express';
 import {z} from 'zod';
@@ -32,8 +33,10 @@ const app: Express = express();
 const mcpAuthServer: McpAuthServer = new McpAuthServer({
   baseUrl: process.env.BASE_URL as string,
   issuer: process.env.ISSUER as string,
+  resource: process.env.RESOURCE as string,
 });
 
+app.use(cors());
 app.use(express.json());
 app.use(mcpAuthServer.router());
 

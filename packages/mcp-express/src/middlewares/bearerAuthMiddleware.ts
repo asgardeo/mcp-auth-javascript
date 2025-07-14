@@ -46,7 +46,13 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
 
     const token: string = parts[1];
 
-    const issuerBase: string | undefined = options?.baseUrl;
+    const baseUrl: string | undefined = options?.baseUrl;
+    const issuer: string | undefined = options?.issuer;
+    const endpoints:
+      | {
+          jwks?: string | undefined;
+        }
+      | undefined = options?.endpoints;
 
     const TOKEN_VALIDATION_CONFIG: {
       jwksUri: string;
@@ -56,11 +62,11 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
         issuer: string;
       };
     } = {
-      jwksUri: `${issuerBase}/oauth2/jwks`,
+      jwksUri: `${baseUrl}${endpoints?.jwks ?? '/oauth2/jwks'}`,
       options: {
         audience: options?.audience,
         clockTolerance: 60,
-        issuer: `${options.issuer}`,
+        issuer,
       },
     };
 
