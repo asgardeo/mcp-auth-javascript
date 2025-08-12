@@ -20,7 +20,7 @@ import {
   AuthorizationServerMetadata,
   AuthorizationServerMetadataOptions,
   generateAuthorizationServerMetadata,
-} from '@pavindulakshan/mcp-node';
+} from '@asgardeo/mcp-node';
 import cors from 'cors';
 import express, {RequestHandler, Request, Response, Router} from 'express';
 

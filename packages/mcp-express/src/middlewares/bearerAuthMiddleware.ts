@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@pavindulakshan/mcp-node';
+import {McpAuthOptions, PROTECTED_RESOURCE_URL, validateToken} from '@asgardeo/mcp-node';
 import {NextFunction, Request, Response} from 'express';
 
 export default function bearerAuthMiddleware(options: McpAuthOptions) {
@@ -62,7 +62,7 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
         issuer: string;
       };
     } = {
-      jwksUri: `${baseUrl}${endpoints?.jwks ?? '/oauth2/jwks'}`,
+      jwksUri: endpoints?.jwks ?? `${baseUrl}/oauth2/jwks}`,
       options: {
         audience: options?.audience,
         clockTolerance: 60,

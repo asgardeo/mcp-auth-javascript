@@ -11,7 +11,7 @@ const commonOptions = {
   bundle: true,
   platform: 'node',
   // External dependencies that shouldn't be bundled
-  external: ['express', 'cors', '@pavindulakshan/mcp-node'],
+  external: ['express', 'cors', '@asgardeo/mcp-node'],
   sourcemap: true,
   minify: true,
   target: 'node18',

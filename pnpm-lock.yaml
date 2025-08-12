@@ -35,7 +35,7 @@ importers:
 
   examples/express-mcp-server:
     dependencies:
-      '@pavindulakshan/mcp-express':
+      '@asgardeo/mcp-express':
         specifier: workspace:*
         version: link:../../packages/mcp-express
       dotenv:
@@ -69,7 +69,7 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.11.0
         version: 1.12.0
-      '@pavindulakshan/mcp-express':
+      '@asgardeo/mcp-express':
         specifier: workspace:*
         version: link:../../packages/mcp-express
       cors:
@@ -118,7 +118,7 @@ importers:
 
   packages/mcp-express:
     dependencies:
-      '@pavindulakshan/mcp-node':
+      '@asgardeo/mcp-node':
         specifier: workspace:^
         version: link:../mcp-node
       cors:

@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import {AUTHORIZATION_SERVER_METADATA_URL, PROTECTED_RESOURCE_URL, McpAuthOptions} from '@pavindulakshan/mcp-node';
+import {AUTHORIZATION_SERVER_METADATA_URL, PROTECTED_RESOURCE_URL, McpAuthOptions} from '@asgardeo/mcp-node';
 import express from 'express';
 import {getAuthorizationServerMetadata} from '../controllers/authorization-server';
 import {getProtectedResourceMetadata} from '../controllers/protected-resource';
