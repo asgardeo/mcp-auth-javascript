@@ -31,10 +31,10 @@ export default function generateAuthorizationServerMetadata(
   const {issuer, endpoints} = options;
 
   const metadata: AuthorizationServerMetadata = {
-    authorization_endpoint: `${options.baseUrl}${endpoints?.authorize ?? '/oauth2/authorize'}`,
+    authorization_endpoint: endpoints?.authorize ?? `${options.baseUrl}/oauth2/authorize`,
     issuer: `${issuer}`,
     response_types_supported: ['code'],
-    token_endpoint: `${options.baseUrl}${endpoints?.token ?? '/oauth2/token'}`,
+    token_endpoint: endpoints?.token ?? `${options.baseUrl}/oauth2/token`,
   };
 
   // TODO: Check this further.
@@ -59,7 +59,7 @@ export default function generateAuthorizationServerMetadata(
   }
 
   // TODO: Check this further.
-  metadata.jwks_uri = `${options.baseUrl}${endpoints?.jwks ?? '/oauth/jwks'}`;
+  metadata.jwks_uri = endpoints?.jwks ?? `${options.baseUrl}/oauth/jwks`;
 
   return metadata;
 }

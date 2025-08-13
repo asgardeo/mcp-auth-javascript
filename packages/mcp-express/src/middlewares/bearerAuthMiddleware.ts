@@ -50,7 +50,9 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
     const issuer: string | undefined = options?.issuer;
     const endpoints:
       | {
+          authorize?: string | undefined;
           jwks?: string | undefined;
+          token?: string | undefined;
         }
       | undefined = options?.endpoints;
 
