@@ -19,4 +19,10 @@
 export interface McpAuthOptions {
   audience?: string;
   baseUrl: string;
+  endpoints?: {
+    jwks?: string;
+    token?: string;
+  };
+  issuer: string;
+  resource: string;
 }

@@ -55,6 +55,16 @@ export interface AuthorizationServerMetadata {
 export interface AuthorizationServerMetadataOptions {
   /** The base URL of the authorization server */
   baseUrl: string;
+  endpoints?: {
+    // URL path of the authorization endpoint
+    authorize?: string;
+    // URL of the JWK Set document
+    jwks?: string;
+    // URL path of the token endpoint
+    token?: string;
+  };
+  // URL path of the issuer endpoint
+  issuer: string;
   /** Optional URL pointing to the service documentation */
   serviceDocumentation?: string;
 }
