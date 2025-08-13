@@ -44,7 +44,7 @@ const app = express();
 
 // Initialize McpAuthServer
 const mcpAuthServer = new McpAuthServer({
-  baseUrl: process.env.BASE_URL as string,
+  baseUrl: process.env.AUTH_SERVER_BASE_URL as string,
   issuer: process.env.ISSUER as string,
   resource: 'http://localhost:8000/mcp', // MCP server URL
 });
@@ -72,6 +72,14 @@ const mcpAuthServer = new McpAuthServer({
   issuer: 'https://auth.example.com/oauth2/token'
   resource: 'http://localhost:8000/mcp'
 });
+```
+
+If you are using Asgardeo this will be
+
+```typescript
+import {McpAuthServer} from '@asgardeo/mcp-express';
+
+const mcpAuthServer = new McpAuthServer({baseUrl: 'https://api.asgardeo.io/t/<your-organization>'});
 ```
 
 #### mcpAuthServer.router()
