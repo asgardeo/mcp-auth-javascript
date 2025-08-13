@@ -28,11 +28,13 @@ import {AuthorizationServerMetadata, AuthorizationServerMetadataOptions} from '.
 export default function generateAuthorizationServerMetadata(
   options: AuthorizationServerMetadataOptions,
 ): AuthorizationServerMetadata {
+  const {issuer, endpoints} = options;
+
   const metadata: AuthorizationServerMetadata = {
-    authorization_endpoint: `${options.baseUrl}/oauth2/authorize`,
-    issuer: `${options.baseUrl}/oauth2/token`,
+    authorization_endpoint: endpoints?.authorize ?? `${options.baseUrl}/oauth2/authorize`,
+    issuer: `${issuer}`,
     response_types_supported: ['code'],
-    token_endpoint: `${options.baseUrl}/oauth2/token`,
+    token_endpoint: endpoints?.token ?? `${options.baseUrl}/oauth2/token`,
   };
 
   // TODO: Check this further.
@@ -57,7 +59,7 @@ export default function generateAuthorizationServerMetadata(
   }
 
   // TODO: Check this further.
-  metadata.jwks_uri = `${options.baseUrl}/oauth/jwks`;
+  metadata.jwks_uri = endpoints?.jwks ?? `${options.baseUrl}/oauth/jwks`;
 
   return metadata;
 }
