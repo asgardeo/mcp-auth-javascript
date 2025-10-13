@@ -5,13 +5,13 @@
   "description": "Workspace to hold the Express middleware for enforcing Model Context Protocol (MCP) authorization using Asgardeo.",
   "author": "WSO2",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/asgardeo/mcp-express#readme",
+  "homepage": "https://github.com/asgardeo/mcp-auth-javascript#readme",
   "bugs": {
-    "url": "https://github.com/asgardeo/mcp-express/issues"
+    "url": "https://github.com/asgardeo/mcp-auth-javascript/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/asgardeo/mcp-express"
+    "url": "https://github.com/asgardeo/mcp-auth-javascript"
   },
   "keywords": [
     "asgardeo",
