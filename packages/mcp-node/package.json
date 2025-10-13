@@ -11,9 +11,9 @@
     "authorization",
     "core"
   ],
-  "homepage": "https://github.com/asgardeo/mcp-node/tree/main/packages/mcp-node#readme",
+  "homepage": "https://github.com/asgardeo/mcp-auth-javascript/tree/main/packages/mcp-node#readme",
   "bugs": {
-    "url": "https://github.com/asgardeo/mcp-node/issues"
+    "url": "https://github.com/asgardeo/mcp-auth-javascript/issues"
   },
   "author": "WSO2",
   "license": "Apache-2.0",
@@ -32,7 +32,7 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/asgardeo/mcp-node",
+    "url": "https://github.com/asgardeo/mcp-auth-javascript",
     "directory": "packages/mcp-node"
   },
   "scripts": {
