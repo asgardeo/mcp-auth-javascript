@@ -6,7 +6,7 @@
 
 - [#15](https://github.com/asgardeo/mcp-auth-javascript/pull/15)
   [`1394c82`](https://github.com/asgardeo/mcp-auth-javascript/commit/1394c82628e283cb5c4e737a5013d3375603de83) Thanks
-  [@pavinduLakshan](https://github.com/pavinduLakshan)! - Fix JWKS URL creation issue
+  [@ayshsandu](https://github.com/ayshsandu)! - Fix JWKS URL creation issue
 
 ## 0.2.0
 
