@@ -64,7 +64,7 @@ export default function bearerAuthMiddleware(options: McpAuthOptions) {
         issuer: string;
       };
     } = {
-      jwksUri: endpoints?.jwks ?? `${baseUrl}/oauth2/jwks}`,
+      jwksUri: endpoints?.jwks ?? `${baseUrl}/oauth2/jwks`,
       options: {
         audience: options?.audience,
         clockTolerance: 60,
