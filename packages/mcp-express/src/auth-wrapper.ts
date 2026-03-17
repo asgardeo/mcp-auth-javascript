@@ -16,5 +16,20 @@
  * under the License.
  */
 
-export {McpAuthServer} from './McpAuthServer';
-export {configuredAuthServer} from './auth-wrapper.js';
+import {McpAuthServer} from './McpAuthServer.js';
+
+const PORT: string = process.env[`PORT`] || '3000';
+const {BASE_URL} = process.env;
+const MCP_RESOURCE: string = process.env['MCP_RESOURCE'] || `http://localhost:${PORT}/mcp`;
+
+if (!BASE_URL) {
+  throw new Error('BASE_URL is missing. Please set it in the .env file.');
+}
+
+const configuredAuthServer: McpAuthServer = new McpAuthServer({
+  baseUrl: BASE_URL,
+  issuer: `${BASE_URL}/oauth2/token`,
+  resource: MCP_RESOURCE,
+});
+
+export {configuredAuthServer};
