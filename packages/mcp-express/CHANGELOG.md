@@ -1,5 +1,19 @@
 # @asgardeo/mcp-express
 
+## 0.3.0
+
+### Minor Changes
+
+- [#19](https://github.com/asgardeo/mcp-auth-javascript/pull/19)
+  [`3a7652d`](https://github.com/asgardeo/mcp-auth-javascript/commit/3a7652dd69ae4b520f7b3b818d8b97e30b59030a) Thanks
+  [@brionmario](https://github.com/brionmario)! - Introduced configuredAuthServer that only requires .env BASE_URL entry
+
+### Patch Changes
+
+- Updated dependencies
+  [[`3a7652d`](https://github.com/asgardeo/mcp-auth-javascript/commit/3a7652dd69ae4b520f7b3b818d8b97e30b59030a)]:
+  - @asgardeo/mcp-node@0.3.0
+
 ## 0.2.1
 
 ### Patch Changes
